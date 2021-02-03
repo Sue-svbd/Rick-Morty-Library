@@ -12,10 +12,47 @@ class App extends Component {
     };
   }
 
+  // to generate range of numbers and characters
+  *iterate(a, b) {
+    for (let i = a; i <= b; i += 1) {
+      yield i;
+    }
+  }
+
+  range(a, b) {
+    if (typeof a === "string") {
+      let result = [...this.iterate(a.charCodeAt(), b.charCodeAt())].map((n) =>
+        String.fromCharCode(n)
+      );
+      return result;
+    } else {
+      let result = [...this.iterate(a, b)];
+      return result;
+    }
+  }
+
+  makeHttpRequest = async () => {
+    const charactersIds = this.range(1, 671);
+
+    let response = await fetch(
+      `https://rickandmortyapi.com/api/character/${charactersIds}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const data = await response.json();
+    this.setState({
+      characters: data,
+    });
+  };
+
   componentDidMount() {
-    fetch("https://rickandmortyapi.com/api/character")
-      .then((response) => response.json())
-      .then((characters) => this.setState({ characters: characters.results }));
+    this.makeHttpRequest();
   }
   render() {
     const { characters, searchfield } = this.state;
