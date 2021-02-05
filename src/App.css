@@ -1,3 +1,10 @@
+body {
+  background: #20002c;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #cbb4d4, #20002c);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #cbb4d4, #20002c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+
 .App {
   text-align: center;
 }
@@ -40,24 +47,4 @@ h1 {
   font-family: "Bigelow Rules";
   font-size: 90px;
   color: black;
-}
-
-.pagination {
-  margin-top: 25px;
-}
-.pagination span {
-  cursor: pointer;
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  border: 1px solid #ddd;
-  margin-bottom: 40px;
-}
-
-.pagination span.active {
-  background-color: #0099ff;
-  color: white;
-  border: 1px solid #0099ff;
 }
